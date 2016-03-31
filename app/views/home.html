@@ -1,0 +1,43 @@
+  <div ng-controller="HomeController">
+    <h1>{{exampleObject.text}}</h1>
+    <div class="row">
+        <input type="button" ng-click="getStudents()" value="Fetch Students!" ng-show="isRegular() || isAdmin()">
+    </div>
+    <div class="row" ng-show="isAdmin()">
+        <label for="Titulo">Titulo: </label>
+        <input type="text" name="Account" ng-model="trabajo.titulo">
+        <label for="Name">Descripcion: </label>
+        <input type="text" name="Name" ng-model="trabajo.descripcion">
+        <input type="button" ng-click="postStudents()" value="Post to /students!">
+    </div>
+    <div ng-show="isAdmin() || isRegular()">
+      <table class="table table-striped">
+        <tr>
+          <th>
+            Titulo
+          </th>
+          <th>
+            Descripcion
+          </th>
+        </tr>
+        <tr ng-repeat="trabajo in trabajos">
+          <td>
+            {{trabajo.titulo}}
+          </td>
+          <td>
+            {{trabajo.descripcion}}
+          </td>
+        </tr>
+        <td>
+              <div class="btn-group btn-group-xs" role="group" aria-label="..." ng-show="isAdmin()">
+                <button type="button" class="btn btn-default" ng-click="updateUser(user)" data-toggle="modal" data-target="#updateModal" data-whatever="update">Modificar</button>
+                <button type="button" class="btn btn-default" ng-click="deleteUser(user)">Eliminar</button>
+              </div>
+
+              <div class="btn-group btn-group-xs" role="group" aria-label="..." ng-show="isRegular()">
+                <button type="button" class="btn btn-default" ng-click="deleteUser(user)">Aceptar</button>
+              </div>
+            </td>
+      </table>
+    </div>
+</div>
